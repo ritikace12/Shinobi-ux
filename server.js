@@ -19,8 +19,8 @@ mongoose.connect(process.env.MONGO_URI, {
   .catch((err) => console.error(err));
 
 // Routes
-
 app.use("/api/shinobi", require("./routes/shinobi"));
+app.use("/api/recipes", require("./routes/recipeRoutes"));
  
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")))

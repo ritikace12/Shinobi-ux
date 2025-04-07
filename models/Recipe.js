@@ -14,18 +14,15 @@ const recipeSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  image: {
-    type: String,
-    default: ''
-  },
-  ingredients: [{
-    type: String
-  }],
   category: {
     type: String,
-    enum: ['Ramen', 'Appetizer', 'Drink', 'Dessert'],
-    default: 'Ramen'
+    required: true,
+    enum: ['Ramen', 'Appetizer', 'Drink', 'Dessert']
   },
+  ingredients: [{
+    type: String,
+    required: true
+  }],
   isSpicy: {
     type: Boolean,
     default: false
@@ -34,15 +31,11 @@ const recipeSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+  image: {
+    type: String
   }
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Recipe', recipeSchema); 
